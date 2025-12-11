@@ -106,23 +106,25 @@ let score = 0;
 function loadQuestion() {
     if (currentQuestion >= quizData.length) {
         document.getElementById('quiz').style.display = 'none';
-
-        // Show score
-        document.getElementById('score').innerHTML =
-            `Your score: ${score}/${quizData.length}
-            <br><a href="prize.html" class="prize-btn">Click me to get your prize 🎁</a>`;
-
-        // Show correct answers
+    
         const answersDiv = document.querySelector('.answers');
         answersDiv.style.display = "block";
-        answersDiv.innerHTML = "<h3>Correct Answers:</h3>";
+    
+       
+        document.getElementById('score').innerHTML =
+            `Your score: ${score}/${quizData.length}<br>
+             <a href="prize.html" class="prize-btn">Click me to get your prize 🎁</a>`;
+    
+       
+        let answersHTML = "<h3>Correct Answers:</h3>";
         quizData.forEach((q, index) => {
-            answersDiv.innerHTML += `
+            answersHTML += `
                 <p><strong>Q${index + 1}:</strong> ${q.question}<br>
                 <strong>Answer:</strong> ${q.answer}</p>
             `;
         });
-
+    
+        answersDiv.innerHTML += answersHTML; 
         return;
     }
 
